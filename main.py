@@ -191,7 +191,7 @@ class Task(object):
                 self.daka()
                # self.log('用户:' + self.name + '  第' + str(i) + '次打卡成功,即将休眠30秒')
                 self.log('第' + str(i) + '次打卡成功')
-                logging.info('用户:' + self.name + '  第' + str(i) + '次打卡成功,即将休眠30秒')
+                logging.info('用户: *** 第' + str(i) + '次打卡成功,即将休眠30秒')
                 time.sleep(10)
                 self.dakanum =i
                 self.detail()
@@ -234,6 +234,12 @@ def init():
     sckey = config['setting']['sckey']
     print('配置文件读取完毕')
     logging.info('配置文件读取完毕')
+    
+    # 使用GitHub actions的密钥
+    uin = os.environ['WYY_UID']
+    pwd = os.environ['WYY_PWD']
+    sckey = os.environ['SC_TOKEN']
+
     conf = {
             'uin': uin,
             'pwd': pwd,
@@ -312,4 +318,4 @@ def taskPool():
 if __name__ == '__main__':
     while True:
         Timer(0, taskPool, ()).start()
-        time.sleep(60*60*24) # 间隔一天
+        break
